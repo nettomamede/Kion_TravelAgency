@@ -69,14 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
        let results = [];
-const keyword = query.toLowerCase();
+const keyword = query.toLowerCase().trim();
 
 if (keyword.includes('beach')) {
     results = travelData.beaches;
 } else if (keyword.includes('temple')) {
     results = travelData.temples;
-} else if (keyword === 'country') {
-    // When the query is exactly 'country', return all cities from all countries.
+} else if (keyword.includes('country')) { // Changed condition to .includes()
+    // When the query contains 'country', return all cities from all countries.
     travelData.countries.forEach(country => {
         results = results.concat(country.cities);
     });
