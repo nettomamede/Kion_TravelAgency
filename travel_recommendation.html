@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kion Travel Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: calc(100% - 4rem);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #265856;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #265856;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+        }
+        
+        .search-container button {
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            background-color: #265856;
+            color: white;
+        }
+
+        .search-container button.clear-btn {
+            background-color: #e65c5c;
+            border-radius: 0 20px 20px 0;
+        }
+
+        .search-container button.search-btn {
+             padding: 0.5rem;
+        }
+
+
+        .content {
+             padding-top: 80px; 
+        }
+        
+        .page-section {
+            position: relative;
+            color: white;
+            min-height: calc(100vh - 80px); 
+            display: flex;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        
+        .page-section .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww') no-repeat center center/cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        #home {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-content {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-content h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        .home-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .book-now-btn {
+            padding: 1rem 2rem;
+            background-color: #265856;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+        
+        .social-icons {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        #about, #contact {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+         #about h2, #contact h2 {
+            font-size: 4rem;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            flex-basis: 30%;
+            margin: 1rem;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 2rem auto 0 auto;
+            width: 100%;
+        }
+
+        #recommendations {
+            display: none; 
+            padding: 0 1rem;
+            width: 450px;
+            background-color: transparent;
+            flex-shrink: 0;
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .recommendation-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: left;
+        }
+
+        .recommendation-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recommendation-card .card-content {
+            padding: 1rem;
+        }
+
+        .recommendation-card h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #265856;
+        }
+         .recommendation-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0.5rem 0;
+            max-width: 100%;
+         }
+        
+        .recommendation-card .visit-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background-color: #265856;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-plane-departure"></i> Kion Travel Agency
+        </div>
+        <div class="nav-links">
+            <a href="#" id="home-link">Home</a>
+            <a href="#" id="about-link">About Us</a>
+            <a href="#" id="contact-link">Contact Us</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Enter a keyword">
+            <button class="search-btn" id="searchBtn"><i class="fa fa-search"></i></button>
+            <button class="clear-btn" id="clearBtn">Clear</button>
+        </div>
+    </nav>
+
+    <main class="content">
+            <section id="home" class="page-section">
+                <div class="background-image"></div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="home-content">
+                    <h1>EXPLORE DREAM DESTINATION</h1>
+                    <p>It encourages exploration of unfamiliar territories, embracing diverse cultures and landscapes, while pursuing the desired destination that captivates the heart and ignites a sense of wonder.</p>
+                    <a href="#" class="book-now-btn">BOOK NOW</a>
+                </div>
+                <aside id="recommendations">
+                    <div id="results-container"></div>
+                </aside>
+            </section>
+
+            <section id="about" class="page-section" style="display:none;">
+                <div class="background-image"></div>
+                <h2>ABOUT US</h2>
+                <p>Welcome to Our Company! We are a team of passionate individuals...</p>
+                <div class="team-container">
+                </div>
+            </section>
+
+            <section id="contact" class="page-section" style="display:none;">
+                 <div class="background-image"></div>
+                <h2>CONTACT US</h2>
+                <p>Get in touch</p>
+                <form id="contactForm">
+                </form>
+            </section>
+    </main>
+
+    <script src="travel_recommendation.js"></script>
+</body>
+</html>
