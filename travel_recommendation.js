@@ -68,21 +68,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        let results = [];
-        const keyword = query.toLowerCase();
+       let results = [];
+const keyword = query.toLowerCase();
 
-        if (keyword.includes('beach')) {
-            results = travelData.beaches;
-        } else if (keyword.includes('temple')) {
-            results = travelData.temples;
-        } else {
-
-            travelData.countries.forEach(country => {
-                if (country.name.toLowerCase().includes(keyword)) {
-                    results = results.concat(country.cities);
-                }
-            });
+if (keyword.includes('beach')) {
+    results = travelData.beaches;
+} else if (keyword.includes('temple')) {
+    results = travelData.temples;
+} else if (keyword === 'country') {
+    // When the query is exactly 'country', return all cities from all countries.
+    travelData.countries.forEach(country => {
+        results = results.concat(country.cities);
+    });
+} else {
+    travelData.countries.forEach(country => {
+        if (country.name.toLowerCase().includes(keyword)) {
+            results = results.concat(country.cities);
         }
+    });
+}
 
         showSection('home');
         displayRecommendations(results);
